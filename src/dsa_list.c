@@ -12,8 +12,7 @@ struct dsa_list {
 int
 dsa_list_init(struct dsa_list **list)
 {
-	if (!list)
-		return -1;
+	if (!list) return -1;
 
 	*list = (struct dsa_list*) malloc(sizeof(**list));
 	if (!*list) {
@@ -35,8 +34,7 @@ dsa_list_deinit(struct dsa_list *list)
 int
 dsa_list_get_element(struct dsa_list *list, int i, _element_t *e)
 {
-	if (i < 0 || i >= list->length)
-		return -1;
+	if (i < 0 || i >= list->length) return -1;
 
 	*e = list->data[i];
 	return 0;
@@ -45,10 +43,7 @@ dsa_list_get_element(struct dsa_list *list, int i, _element_t *e)
 int
 dsa_list_insert(struct dsa_list *list, int i, _element_t e)
 {
-	if (list->length == DSA_LIST_MAXSIZE)
-		return -1;
-	if (i < 0 || i >= DSA_LIST_MAXSIZE)
-		return -1;
+	if (i < 0 || i + 1 >= DSA_LIST_MAXSIZE) return -1;
 
 	int j = list->length;
 	while (i && j >= i) {
@@ -63,8 +58,7 @@ dsa_list_insert(struct dsa_list *list, int i, _element_t e)
 int
 dsa_list_delete(struct dsa_list *list, int i, _element_t *e)
 {
-	if (i < 0 || i >= list->length)
-		return -1;
+	if (i < 0 || i >= list->length) return -1;
 
 	*e = list->data[i - 1];
 

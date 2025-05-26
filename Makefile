@@ -3,12 +3,10 @@
 
 TARGET	= test_dsa_list
 CFLAGS	= -I./src
-CSRSC	= test/test_dsa_list.c src/dsa_list.c
-OBJS	= $(CSRSC:.c=.o)
 
 all: $(TARGET)
 
-test_dsa_list: $(OBJS)
+test_dsa_list: test/test_dsa_list.o src/dsa_list.o
 	@$(CC) -o $@ $^
 	@rm -rf $(OBJS)
 
@@ -17,4 +15,5 @@ test_dsa_list: $(OBJS)
 	@echo "CC	$<"
 
 clean:
-	@rm -rf $(TARGET) $(OBJS)
+	@rm -rf $(TARGET)
+	@find . -name '*.o' | xargs rm -rf
