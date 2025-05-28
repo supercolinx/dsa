@@ -1,14 +1,11 @@
 # colinx
 #
 
-TARGET	= test_dsa_list
-CFLAGS	= -I./src
+TARGET	=
+CFLAGS	= -Wall -g -O2 \
+	  -I./src
 
 all: $(TARGET)
-
-test_dsa_list: test/test_dsa_list.o src/dsa_list.o
-	@$(CC) -o $@ $^
-	@rm -rf $(OBJS)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
